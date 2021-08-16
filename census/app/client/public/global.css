@@ -1,0 +1,108 @@
+:root {
+  --main: #132142;
+  --accent: #1f9baa;
+  --dark: #132142;
+  --grey: #a5a7af;
+  --light: #ebf2fa;
+  --success: #5dfda5;
+  --error: #ff7a7a;
+  --elevated: 0 24px 38px 3px #00000014, 0 9px 46px 8px #00000012,
+    0 11px 15px -7px #0002;
+  --border: solid 2px var(--accent);
+  --border-focus: solid 2px var(--grey);
+  --border-radius: 10px;
+  --bg: var(--main);
+  --text: var(--light);
+  --text-secondary: var(--grey);
+  --scroll-thumb: var(--accent);
+  --scroll-track: var(--main);
+}
+
+* {
+  box-sizing: border-box;
+  font-family: 'Raleway', sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg);
+  scrollbar-width: thin;
+  scrollbar-color: var(--scroll-thumb) var(--scroll-track);
+  color: var(--text);
+}
+
+body::-webkit-scrollbar {
+  width: 10px;
+}
+body::-webkit-scrollbar-track {
+  background-color: var(--scroll-track);
+}
+body::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: var(--scroll-thumb);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+}
+
+label {
+  cursor: pointer;
+}
+
+input,
+input[type='submit'],
+button,
+select {
+  cursor: pointer;
+  outline: none;
+  border: var(--border);
+  border-radius: var(--border-radius);
+  padding: 5px 10px;
+  background-color: var(--main);
+  color: var(--text);
+  transition: border 100ms;
+}
+input[type='submit'],
+button {
+  display: inline-block;
+  cursor: pointer;
+  padding: 5px 20px;
+  background-color: var(--accent);
+}
+input:focus,
+input[type='submit']:hover,
+button:hover,
+select:focus {
+  border: var(--border-focus);
+}
+
+button:disabled {
+  cursor: default;
+  border: var(--border);
+  background-color: var(--secondary);
+}
+button.success {
+  color: var(--dark);
+  border-color: var(--success);
+  background-color: var(--success);
+}
+button.error {
+  color: var(--dark);
+  border-color: var(--error);
+  background-color: var(--error);
+}
+
+.success {
+  color: var(--success);
+}
+.error {
+  color: var(--error);
+}

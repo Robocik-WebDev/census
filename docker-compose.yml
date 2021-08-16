@@ -1,0 +1,28 @@
+version: '3.3'
+
+services:
+  census:
+    build: ./census/
+    tty: true
+    command: python3 app.py
+    ports:
+      - 5000:5000
+    env_file:
+      - ./.env.dev
+    depends_on:
+      - postgres-db
+    volumes:
+      - type: bind
+        source: ./census/app
+        target: /app/
+  postgres-db:
+    image: postgres:alpine
+    volumes:
+      - postgres-dev:/var/lib/postgresql/data/
+    env_file:
+      - ./.env.dev
+    ports:
+      - 5432:5432
+
+volumes:
+  postgres-dev:
