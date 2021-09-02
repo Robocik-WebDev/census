@@ -14,3 +14,5 @@ class Config(object):
             dbname=os.environ['POSTGRES_DB']
         )
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    PASSWORD_SALT = os.environ['PASSWORD_SALT']
+    SECRET_KEY = os.environ['PASSWORD_SALT']
