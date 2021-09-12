@@ -4,25 +4,28 @@ services:
   census:
     build: ./census/
     tty: true
-    command: python3 app.py
+    command: nodemon --legacy-watch server.js
     ports:
-      - 5000:5000
+      - 8080:8080
     env_file:
       - ./.env.dev
     depends_on:
-      - postgres-db
+      - mongo-db
+    external_links:
+      - mongo-db
     volumes:
-      - type: bind
-        source: ./census/app
-        target: /app/
-  postgres-db:
-    image: postgres:alpine
+      - ./census/app/:/app
+      - /app/node_modules
+  mongo-db:
+    image: mongo
+    restart: always
     volumes:
-      - postgres-dev:/var/lib/postgresql/data/
+      - mongo-dev:/data/db
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
     env_file:
       - ./.env.dev
     ports:
-      - 5432:5432
+      - '27017-27019:27017-27019'
 
 volumes:
-  postgres-dev:
+  mongo-dev:
